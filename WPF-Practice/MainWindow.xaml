@@ -5,26 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Practice"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+         WindowStartupLocation="CenterScreen">
     <Grid>
-        <TextBox Name="textIn" Margin="97,59,479,183"/>
-        <TextBlock Name="textOut" Text="Translation will appear here" TextWrapping="Wrap" Margin="487,59,89,183"/>
-        <Button Name="translateButton" Content="Translate!" HorizontalAlignment="Left" Margin="303,348,0,0" VerticalAlignment="Top" Height="61" Width="149" Click="TranslateButton_Click"/>
-        <ComboBox Name="sourceLandBox" HorizontalAlignment="Left" Margin="149,297,0,0" VerticalAlignment="Top" Width="120">
+        <TextBox Name="textIn" Margin="89,59,487,183" FontSize="18" FontFamily="Bahnschrift Light"/>
+        <TextBox Name="textOut" Text="Translation will appear here" IsReadOnly="True" TextWrapping="Wrap" Margin="487,59,89,183" FontSize="18" FontFamily="Bahnschrift Light"/>
+        <Button Name="translateButton" Content="Translate!" HorizontalAlignment="Center" Margin="0,348,0,0" VerticalAlignment="Top" Height="61" Width="148" Click="TranslateButton_Click" FontSize="24" FontFamily="Bahnschrift Light"/>
+        <ComboBox Name="sourceLandBox" HorizontalAlignment="Left" Margin="141,297,0,0" VerticalAlignment="Top" Width="120" FontSize="18" FontFamily="Bahnschrift">
             <ComboBox.Items>
                 <ComboBoxItem Content="English" Tag="en" />
                 <ComboBoxItem Content="Ukrainian" Tag="uk" />
                 <ComboBoxItem Content="Spanish" Tag="es" />
                 <ComboBoxItem Content="German" Tag="de" />
+                <ComboBoxItem Content="Italian" Tag="it" />
+                <ComboBoxItem Content="French" Tag="fr" />
+                <ComboBoxItem Content="Portuguese" Tag="pt" />
+                <ComboBoxItem Content="Japanese" Tag="ja" />
             </ComboBox.Items>
         </ComboBox>
 
-        <ComboBox Name="targetLandBox" HorizontalAlignment="Left" Margin="539,297,0,0" VerticalAlignment="Top" Width="120">
+        <ComboBox Name="targetLandBox" HorizontalAlignment="Left" Margin="539,297,0,0" VerticalAlignment="Top" Width="120" FontSize="18" FontFamily="Bahnschrift">
             <ComboBox.Items>
                 <ComboBoxItem Content="English" Tag="en"/>
                 <ComboBoxItem Content="Ukrainian" Tag="uk" />
                 <ComboBoxItem Content="Spanish" Tag="es" />
                 <ComboBoxItem Content="German" Tag="de" />
+                <ComboBoxItem Content="Italian" Tag="it" />
+                <ComboBoxItem Content="French" Tag="fr" />
+                <ComboBoxItem Content="Portuguese" Tag="pt" />
+                <ComboBoxItem Content="Japanese" Tag="ja" />
             </ComboBox.Items>
         </ComboBox>
 

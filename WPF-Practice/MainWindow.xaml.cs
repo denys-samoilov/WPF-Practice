@@ -3,6 +3,7 @@ using System.Text;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
+using System.Speech.Synthesis;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -18,8 +19,8 @@ namespace WPF_Practice
 		public MainWindow()
 		{
 			InitializeComponent();
-			sourceLandBox.SelectedIndex = 0;
-			targetLandBox.SelectedIndex = 1;
+			sourceLangBox.SelectedIndex = 1;
+			targetLangBox.SelectedIndex = 0;
 		}
 		private async void TranslateButton_Click(object sender, RoutedEventArgs e)
 		{
@@ -30,8 +31,8 @@ namespace WPF_Practice
 				return;
 			}
 
-			string sourceLanguage = ((ComboBoxItem)sourceLandBox.SelectedItem).Tag.ToString();
-			string targetLanguage = ((ComboBoxItem)targetLandBox.SelectedItem).Tag.ToString();
+			string sourceLanguage = ((ComboBoxItem)sourceLangBox.SelectedItem).Tag.ToString();
+			string targetLanguage = ((ComboBoxItem)targetLangBox.SelectedItem).Tag.ToString();
 
 			string translatedText = await TranslateTextLingva(inputText, sourceLanguage, targetLanguage);
 			textOut.Text = translatedText;
@@ -49,8 +50,46 @@ namespace WPF_Practice
 			string jsonResponse = await response.Content.ReadAsStringAsync();
 			var result = JsonDocument.Parse(jsonResponse);
 			return result.RootElement.GetProperty("translation").GetString();
+		}
 
+		public void SpeakText(string text, string language)
+		{
+			using (SpeechSynthesizer synthesizer = new SpeechSynthesizer())
+			{
+				var voices = synthesizer.GetInstalledVoices().Select(v => v.VoiceInfo).Where(c => c.Culture.Name.StartsWith(language));
+				if (voices.Any())
+				{
+					synthesizer.SelectVoice(voices.First().Name);
+				}
+				
+				synthesizer.Speak(text);
+			}
+		}
 
+		private void soundButtonIn_Click(object sender, RoutedEventArgs e)
+		{
+			string text = textIn.Text;
+			string language = ((ComboBoxItem)sourceLangBox.SelectedItem).Tag.ToString();
+
+			SpeakText(text, language);
+		}
+
+		private void soundButtonOut_Click(object sender, RoutedEventArgs e)
+		{
+			string text = textOut.Text;
+			string language = ((ComboBoxItem)targetLangBox.SelectedItem).Tag.ToString();
+
+			SpeakText(text, language);
+		}
+
+		private void sourceLangBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			textIn.Text = "";
+		}
+
+		private void targetLangBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			textOut.Text = "";
 		}
 	}
 

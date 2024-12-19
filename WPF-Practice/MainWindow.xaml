@@ -5,13 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Practice"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="Translator" Height="450" Width="800"
+         Background="#f0f4f8"
          WindowStartupLocation="CenterScreen">
     <Grid>
         <TextBox Name="textIn" Margin="89,59,487,183" FontSize="18" FontFamily="Bahnschrift Light"/>
-        <TextBox Name="textOut" Text="Translation will appear here" IsReadOnly="True" TextWrapping="Wrap" Margin="487,59,89,183" FontSize="18" FontFamily="Bahnschrift Light"/>
-        <Button Name="translateButton" Content="Translate!" HorizontalAlignment="Center" Margin="0,348,0,0" VerticalAlignment="Top" Height="61" Width="148" Click="TranslateButton_Click" FontSize="24" FontFamily="Bahnschrift Light"/>
-        <ComboBox Name="sourceLandBox" HorizontalAlignment="Left" Margin="141,297,0,0" VerticalAlignment="Top" Width="120" FontSize="18" FontFamily="Bahnschrift">
+        <TextBox Name="textOut" IsReadOnly="True" TextWrapping="Wrap" Margin="487,59,89,183" FontSize="18" FontFamily="Bahnschrift Light"/>
+        <Button Name="translateButton" Background="#4CAF50" Foreground="White" Content="Translate!" HorizontalAlignment="Center" Margin="0,304,0,0" VerticalAlignment="Top" Height="61" Width="148" Click="TranslateButton_Click" FontSize="24" FontFamily="Bahnschrift Light"/>
+
+        <ComboBox Name="sourceLangBox" HorizontalAlignment="Left" Margin="89,265,0,0" VerticalAlignment="Top" Width="120" FontSize="18" FontFamily="Bahnschrift" SelectionChanged="sourceLangBox_SelectionChanged">
             <ComboBox.Items>
                 <ComboBoxItem Content="English" Tag="en" />
                 <ComboBoxItem Content="Ukrainian" Tag="uk" />
@@ -19,12 +21,13 @@
                 <ComboBoxItem Content="German" Tag="de" />
                 <ComboBoxItem Content="Italian" Tag="it" />
                 <ComboBoxItem Content="French" Tag="fr" />
+                <ComboBoxItem Content="Polish" Tag="pl" />
                 <ComboBoxItem Content="Portuguese" Tag="pt" />
                 <ComboBoxItem Content="Japanese" Tag="ja" />
             </ComboBox.Items>
         </ComboBox>
 
-        <ComboBox Name="targetLandBox" HorizontalAlignment="Left" Margin="539,297,0,0" VerticalAlignment="Top" Width="120" FontSize="18" FontFamily="Bahnschrift">
+        <ComboBox Name="targetLangBox" HorizontalAlignment="Left" Margin="487,265,0,0" VerticalAlignment="Top" Width="120" FontSize="18" FontFamily="Bahnschrift" SelectionChanged="targetLangBox_SelectionChanged">
             <ComboBox.Items>
                 <ComboBoxItem Content="English" Tag="en"/>
                 <ComboBoxItem Content="Ukrainian" Tag="uk" />
@@ -32,10 +35,17 @@
                 <ComboBoxItem Content="German" Tag="de" />
                 <ComboBoxItem Content="Italian" Tag="it" />
                 <ComboBoxItem Content="French" Tag="fr" />
+                <ComboBoxItem Content="Polish" Tag="pl" />
                 <ComboBoxItem Content="Portuguese" Tag="pt" />
                 <ComboBoxItem Content="Japanese" Tag="ja" />
             </ComboBox.Items>
         </ComboBox>
 
+        <Button Content="🔊" Background="#1976D2" Foreground="White" Name="soundButtonIn" HorizontalAlignment="Left" Margin="215,265,0,0" VerticalAlignment="Top" Click="soundButtonIn_Click" FontSize="16" Width="32" Height="28"/>
+
+        <Button Content="🔊" Background="#1976D2" Foreground="White" Name="soundButtonOut" HorizontalAlignment="Left" Margin="613,265,0,0" VerticalAlignment="Top" Click="soundButtonOut_Click" FontSize="16" Width="32" Height="28"/>
+
+        <Label Content="From:" HorizontalAlignment="Left" Margin="89,18,0,0" VerticalAlignment="Top" FontFamily="Bahnschrift Light" FontSize="18"/>
+        <Label Content="To:" HorizontalAlignment="Left" Margin="487,18,0,0" VerticalAlignment="Top" FontFamily="Bahnschrift Light" FontSize="18"/>
     </Grid>
 </Window>
